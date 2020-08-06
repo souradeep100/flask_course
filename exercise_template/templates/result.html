@@ -1,0 +1,21 @@
+{%extends 'base.html'%}
+{%block content %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">The result</h1>
+    <p class="lead">
+      {{email}}
+      {% set name = email.split('@')[0] %}
+      {{name}}
+      {% for val in name %}
+      {{val}}
+      {% endfor %}
+      {% if name|length > 3 %}
+      The name is {{name}}
+      {% else %}
+      The email is not vaild
+      {%endif%}
+    </p>
+  </div>
+</div>
+{%endblock%}
