@@ -1,18 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="jumbotron">
-    <h1 class="display-4">Home</h1>
-    <form action="{{url_for('result')}}">
-        <div class="form-group">
-          <label for="exampleInputEmail1">Email address</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value="">
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+{% for mess in get_flashed_messages()  %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" class="fade close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        {{mess}}
         </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" name="password" value="">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-</div>
+      {% endfor %}
+<form method="POST">
+  {# This hidden_tag is a CSRF security feature. #}
+  <label for="mail">email:</label>
+  {{ form.mail1() }}
+  {{ form.submit()}}
+</form>
 {% endblock %}
